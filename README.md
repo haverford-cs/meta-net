@@ -58,7 +58,7 @@ pip install --user opencv-python.
 Models were trained for 20 epochs each.
 ### Low param model:
 __________________________________________________________________________________________________
-Layer (type)                    Output Shape         Param #     Connected to                     
+Layer (type)                    Output Shape          Params     Connected to                     
 ==================================================================================================
 input_1 (InputLayer)            [(None, 32, 32, 3)]  0                                            
 __________________________________________________________________________________________________
@@ -110,7 +110,7 @@ Test Loss: 0.558156430721283, Test Accuracy: 96.0094985961914
 
 ### Class competition Model
 _________________________________________________________________
-Layer (type)                 Output Shape              Param #   
+Layer (type)                 Output Shape              Params   
 =================================================================
 conv2d (Conv2D)              (None, 32, 32, 32)        896       
 _________________________________________________________________
