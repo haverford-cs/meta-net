@@ -21,10 +21,22 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 
 12/9/2019: Gareth (2 Hours)
   1) Converted labels to numpy arrays, then created tensorflow datasets
-  2) Added code for model training and testing (no validation split yet)
+  2) Added code for model training and testing
+  3) Added validation split
+  4) Adjusted model architecture to work with new classes (43 instead of 10)
+  Notes: The validation split seems a bit useless so we might want to remove
+  it. The current model has a testing accuracy of 96%, not bad at all! However,
+  the model is huge.
 
 ## Todo
 1) Image transformations, shouldn't be too difficult with tensorflow datasets?
 2) Model architecture
 3) Regularization parameters
-4) Model quantization 
+4) Model quantization
+5) Save model
+
+## Working with GPUs
+It is currently impossible to commit from the lab computers to remote. Thus
+I would suggest scp -r to move all the files between commits. You only want
+to move the data once, so scp -r ~/path_to_files/*.py will move just the code
+files. 

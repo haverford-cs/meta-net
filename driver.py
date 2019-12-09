@@ -10,7 +10,7 @@ import tensorflow as tf
 # Our imports
 import preprocess
 from convnet import *
-import tune_models 
+import tune_models
 
 def main(verbose = False):
     """Main driver code.
@@ -34,6 +34,7 @@ def main(verbose = False):
         print(train_labels.shape) # Should be (39209,)
         print(test_data.shape) # Should be (12630, 32, 32, 3)
         print(test_labels.shape) # Should be (12630,)
+        print(test_labels)
 
         # Plot data distribution over labels
         fig, ax = plt.subplots(1, 2, sharey = True)
@@ -73,4 +74,4 @@ def main(verbose = False):
         print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
 
 if __name__ == "__main__":
-    main()
+    main(True)

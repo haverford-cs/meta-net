@@ -6,6 +6,7 @@ Date: December 9th, 2019
 """
 
 import tensorflow as tf
+import numpy as np 
 
 @tf.function
 def train_step(model, images, labels, loss_object, optimizer):

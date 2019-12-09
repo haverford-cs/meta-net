@@ -75,7 +75,7 @@ class convnet(Model):
         model.add(Flatten())
         model.add(Dense(4000, activation = tf.nn.relu))
         model.add(Dense(4000, activation = tf.nn.relu))
-        model.add(Dense(10, activation = tf.nn.softmax))
+        model.add(Dense(43, activation = tf.nn.softmax))
 
         self.model = model
 
