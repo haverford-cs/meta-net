@@ -28,12 +28,21 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   it. The current model has a testing accuracy of 96%, not bad at all! However,
   the model is huge.
 
+12/9/2019: Gareth (2 Hours)
+  1) Added multi-scale model with regularization, might want batch norm
+  2) Bumped up number of epochs, might want to adjust stopping criteria
+  3) Removed validation set for now
+  Notes: Test accuracy for the new model is around 95%, but number of params
+  is much lower (around 5 million). I removed the validation set since the
+  model had poor accuracy on it (much lower than the test acc). It might be
+  more useful to use cross-validation instead.
+
 ## Todo
 1) Image transformations, shouldn't be too difficult with tensorflow datasets?
-2) Model architecture
-3) Regularization parameters
-4) Model quantization
-5) Save model
+2) Model quantization
+3) Save model
+4) Stopping criteria?
+5) Batch norm?
 
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote. Thus
@@ -42,4 +51,4 @@ to move the data once, so scp -r ~/path_to_files/*.py will move just the code
 files.
 
 Also if you need to get around the lab computers not having opencv, I used
-pip install --user opencv-python. 
+pip install --user opencv-python.

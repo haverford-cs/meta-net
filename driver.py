@@ -10,15 +10,18 @@ import tensorflow as tf
 # Our imports
 import preprocess
 from convnet import *
+from multi_scale_conv import *
 import tune_models
 
-def main(verbose = False):
+def main(verbose = False, validating = False):
     """Main driver code.
 
     Parameters
     ----------
     verbose : Boolean
         Print and generate debugging information.
+    validating : Boolean
+        Should a validation set be used.
 
     Returns
     -------
@@ -47,18 +50,22 @@ def main(verbose = False):
     # Create tensorflow datasets
     train_dset = tf.data.Dataset.from_tensor_slices((train_data, train_labels))
     test_dset = tf.data.Dataset.from_tensor_slices((test_data, test_labels))
+    val_dset = None
 
     # Validation dataset of size 2000
-    val_dset = train_dset.take(2000)
-    train_dset = train_dset.skip(2000)
+    if validating:
+        val_dset = train_dset.take(2000)
+        train_dset = train_dset.skip(2000)
 
     train_dset = train_dset.shuffle(train_data.shape[0]).batch(64)
-    val_dset = val_dset.batch(64)
     test_dset = test_dset.batch(64)
+    if validating:
+        val_dset = val_dset.batch(64)
 
     # Instantiate the model
-    model = convnet().model
-    tune_models.run_training(model, train_dset, val_dset)
+    model = multi_scale_conv().model
+    model.summary()
+    tune_models.run_training(model, train_dset, validating, val_dset)
     confusion_matrix = tune_models.run_testing(model, test_dset)
 
     # Printing the confusion matrix
@@ -74,4 +81,4 @@ def main(verbose = False):
         print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
 
 if __name__ == "__main__":
-    main(True)
+    main(validating = False)
