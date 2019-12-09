@@ -18,3 +18,13 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 12/8/2019: Gareth (2 Hours)
   1) Wrote some code to plot label distributions for training and test data
   2) Wrote code for basic convnet architecture, to be replaced later
+
+12/9/2019: Gareth (2 Hours)
+  1) Converted labels to numpy arrays, then created tensorflow datasets
+  2) Added code for model training and testing (no validation split yet)
+
+## Todo
+1) Image transformations, shouldn't be too difficult with tensorflow datasets?
+2) Model architecture
+3) Regularization parameters
+4) Model quantization 

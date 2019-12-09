@@ -11,8 +11,6 @@ import csv
 import os
 import numpy as np
 
-
-
 training_path = "Training/Final_Training/Images/"
 testing_path = "Testing/Final_Test/Images"
 
@@ -51,6 +49,7 @@ def load_training_data():
                 labels.append(label)
             csv_file.close()
     data = normalize(data)
+    labels = np.array(labels)
     return data, labels
 
 def load_testing_data():
@@ -82,6 +81,7 @@ def load_testing_data():
         labels.append(label)
     csv_file.close()
     data = normalize(data)
+    labels = np.array(labels)
     return data, labels
 
 

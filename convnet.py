@@ -1,6 +1,7 @@
 """
-Convolutional neural network architecture. May make more of these as needed.
-Authors: Gareth Nicholas + Emile Givental
+Convolutional neural network architecture that I used in the class competition.
+The starting benchmark.
+Authors: Gareth Nicholas
 Date: December 8th, 2019
 """
 
@@ -76,10 +77,10 @@ class convnet(Model):
         model.add(Dense(4000, activation = tf.nn.relu))
         model.add(Dense(10, activation = tf.nn.softmax))
 
-    self.model = model
+        self.model = model
 
     def call(self, x):
-    # Apply convolutional layers
-    # Then flatten
-    # Then output probabilities
-    return self.model(x)
+        # Apply convolutional layers
+        # Then flatten
+        # Then output probabilities
+        return self.model(x)
