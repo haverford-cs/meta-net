@@ -35,8 +35,11 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 4) Model quantization
 5) Save model
 
-## Working with GPUs
+## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote. Thus
 I would suggest scp -r to move all the files between commits. You only want
 to move the data once, so scp -r ~/path_to_files/*.py will move just the code
-files. 
+files.
+
+Also if you need to get around the lab computers not having opencv, I used
+pip install --user opencv-python. 
