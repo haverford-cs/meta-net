@@ -57,8 +57,9 @@ pip install --user opencv-python.
 ## Current Model Statistics (12/9/2019)
 Models were trained for 20 epochs each.
 ### Low param model:
+
 __________________________________________________________________________________________________
-Layer (type)                    Output Shape          Params     Connected to                     
+           Layer             Output Shape          Params     Connected to                     
 ==================================================================================================
 input_1 (InputLayer)            [(None, 32, 32, 3)]  0                                            
 __________________________________________________________________________________________________
