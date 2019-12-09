@@ -38,36 +38,54 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   model had poor accuracy on it (much lower than the test acc). It might be
   more useful to use cross-validation instead.
 
+12/9/2019: Gareth (2 Hours)
+  1) Added reduced convnet model which gets us down to 1.6 million parameters
+  and almost 97% accuracy!!!
+  2) Recalculated some of the model benchmarks with different amounts of
+  regularization, added batch normalization to multi-scale.
+
 ## Todo
 1) Image transformations, shouldn't be too difficult with tensorflow datasets?
+Want image flips, maybe some zooms and brightness changes too?
 2) Model quantization
 3) Save model
-4) Stopping criteria?
-5) Batch norm?
+4) KNN as baseline
+5) Analyze confusion matrices
+6) Generate learning curves for presentation
+7) Generate graphs of model parameters/size vs accuracy
 
 ## Working with GPUs and lab computers
-It is currently impossible to commit from the lab computers to remote. Thus
-I would suggest scp -r to move all the files between commits. You only want
-to move the data once, so scp -r ~/path_to_files/*.py will move just the code
-files.
+It is currently impossible to commit from the lab computers to remote without
+generating a new SSH key (if you have TFA enabled). Thus I would suggest
+scp -r to move all the files between commits. You only want to move the data
+once, so scp -r ~/path_to_files/*.py will move just the code files.
 
 Also if you need to get around the lab computers not having opencv, I used
 pip install --user opencv-python.
 
 ## Current Model Statistics (12/9/2019)
 Models were trained for 20 epochs each.
-### Low param model:
 
-Total params: 4,931,179
-Trainable params: 4,931,179
-Non-trainable params: 0
-
-Test Loss: 0.558156430721283, Test Accuracy: 96.0094985961914
-
-### Class competition Model
+### Class competition model
 
 Total params: 20,960,619
 Trainable params: 20,958,699
 Non-trainable params: 1,920
 
-Test Loss: 0.1295158863067627, Test Accuracy: 97.5534439086914
+Test Loss: 0.2239145189523697, Test Accuracy: 97.22090148925781
+
+### Multi-scale cnn
+
+Total params: 3,882,475
+Trainable params: 3,882,027
+Non-trainable params: 448
+
+Test Loss: 0.7362900376319885, Test Accuracy: 96.46080780029297
+
+### Smaller version of class competition model
+
+Total params: 1,622,603
+Trainable params: 1,621,707
+Non-trainable params: 896
+
+Test Loss: 0.35589390993118286, Test Accuracy: 96.34204864501953

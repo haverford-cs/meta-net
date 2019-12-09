@@ -11,6 +11,7 @@ import tensorflow as tf
 import preprocess
 from convnet import *
 from multi_scale_conv import *
+from reduced_convnet import *
 import tune_models
 
 def main(verbose = False, validating = False):
@@ -63,7 +64,7 @@ def main(verbose = False, validating = False):
         val_dset = val_dset.batch(64)
 
     # Instantiate the model
-    model = multi_scale_conv().model
+    model = reduced_convnet().model
     model.summary()
     tune_models.run_training(model, train_dset, validating, val_dset)
     confusion_matrix = tune_models.run_testing(model, test_dset)
@@ -81,4 +82,4 @@ def main(verbose = False, validating = False):
         print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
 
 if __name__ == "__main__":
-    main(validating = False)
+    main(True, validating = False)
