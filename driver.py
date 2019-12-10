@@ -64,7 +64,7 @@ def main(verbose = False, validating = False):
     if validating:
         val_dset = val_dset.batch(64)
 
-    model = reduced_dense_256_pool().model 
+    model = miniscule_conv().model 
     model.summary()
     tune_models.run_training(model, train_dset, validating, val_dset)
     confusion_matrix = tune_models.run_testing(model, test_dset)

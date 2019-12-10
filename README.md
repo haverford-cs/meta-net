@@ -45,6 +45,10 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   regularization, added batch normalization to multi-scale.
   3) Added additional models for graph of params vs accuracy
 
+12/10/2019: Gareth (1 Hour)
+  1) Added extra models for comparison. Their statistics can be found below
+  and the models are in comparison_models.py
+
 ## Todo
 1) Image transformations, shouldn't be too difficult with tensorflow datasets?
 Want image flips, maybe some zooms and brightness changes too?
@@ -99,11 +103,52 @@ Non-trainable params: 896
 
 Test Loss: 0.27640843391418457, Test Accuracy: 96.76959228515625
 
-### Similar to model above but with larger filter sizes, also reduced the
-number of convolutional layers: reduced_dense_256_pool()
+### Model above with larger filter sizes, reduced the number of convolutional layers: reduced_dense_256_pool()
 
 Total params: 368,875
 Trainable params: 368,683
 Non-trainable params: 192
 
 Test Loss: 0.40244945883750916, Test Accuracy: 93.11164093017578
+
+### Model above with half the number of filters: reduced_dense_and_conv()
+
+Total params: 158,987
+Trainable params: 158,891
+Non-trainable params: 96
+
+Test Loss: 0.41992634534835815, Test Accuracy: 92.57323455810547
+
+### Model above with half the number of filters again: reduced_dense_and_conv2()
+
+Total params: 102,043
+Trainable params: 101,995
+Non-trainable params: 48
+
+Test Loss: 0.6126990914344788, Test Accuracy: 90.41963958740234
+
+### Halve the filters once again (down to 1/8 of original): reduced_dense_and_conv3()
+
+Total params: 85,571
+Trainable params: 85,547
+Non-trainable params: 24
+
+Test Loss: 0.6464730501174927, Test Accuracy: 88.0680923461914
+
+### Tiny model to get corner of our graph: tiny_conv()
+
+Total params: 25,227
+Trainable params: 25,211
+Non-trainable params: 16
+
+Test Loss: 0.8594541549682617, Test Accuracy: 80.68091583251953
+
+### Going even smaller than the last model: miniscule_conv()
+
+Total params: 2,284
+Trainable params: 2,278
+Non-trainable params: 6
+
+Test Loss: 1.25192391872406, Test Accuracy: 69.57244873046875
+
+Wow conv nets are incredible.
