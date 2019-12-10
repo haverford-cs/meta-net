@@ -38,11 +38,12 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   model had poor accuracy on it (much lower than the test acc). It might be
   more useful to use cross-validation instead.
 
-12/9/2019: Gareth (2 Hours)
+12/9/2019: Gareth (4 Hours)
   1) Added reduced convnet model which gets us down to 1.6 million parameters
   and almost 97% accuracy!!!
   2) Recalculated some of the model benchmarks with different amounts of
   regularization, added batch normalization to multi-scale.
+  3) Added additional models for graph of params vs accuracy
 
 ## Todo
 1) Image transformations, shouldn't be too difficult with tensorflow datasets?
@@ -66,7 +67,7 @@ pip install --user opencv-python.
 ## Current Model Statistics (12/9/2019)
 Models were trained for 20 epochs each.
 
-### Class competition model
+### Class competition model: convnet()
 
 Total params: 20,960,619
 Trainable params: 20,958,699
@@ -74,7 +75,7 @@ Non-trainable params: 1,920
 
 Test Loss: 0.2239145189523697, Test Accuracy: 97.22090148925781
 
-### Multi-scale cnn
+### Multi-scale cnn: multi_scale_conv()
 
 Total params: 3,882,475
 Trainable params: 3,882,027
@@ -82,10 +83,27 @@ Non-trainable params: 448
 
 Test Loss: 0.7362900376319885, Test Accuracy: 96.46080780029297
 
-### Smaller version of class competition model
+### Smaller version of class competition model (SCCM): reduced_convnet()
 
 Total params: 1,622,603
 Trainable params: 1,621,707
 Non-trainable params: 896
 
-Test Loss: 0.35589390993118286, Test Accuracy: 96.34204864501953
+Test Loss: 0.23565997183322906, Test Accuracy: 96.95170593261719
+
+### SCCM but with less nodes in the dense layers (256 vs 512): reduced_dense_256()
+
+Total params: 890,187
+Trainable params: 889,291
+Non-trainable params: 896
+
+Test Loss: 0.27640843391418457, Test Accuracy: 96.76959228515625
+
+### Similar to model above but with larger filter sizes, also reduced the
+number of convolutional layers: reduced_dense_256_pool()
+
+Total params: 368,875
+Trainable params: 368,683
+Non-trainable params: 192
+
+Test Loss: 0.40244945883750916, Test Accuracy: 93.11164093017578

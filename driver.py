@@ -12,6 +12,7 @@ import preprocess
 from convnet import *
 from multi_scale_conv import *
 from reduced_convnet import *
+from comparison_models import *
 import tune_models
 
 def main(verbose = False, validating = False):
@@ -63,8 +64,7 @@ def main(verbose = False, validating = False):
     if validating:
         val_dset = val_dset.batch(64)
 
-    # Instantiate the model
-    model = reduced_convnet().model
+    model = reduced_dense_256_pool().model 
     model.summary()
     tune_models.run_training(model, train_dset, validating, val_dset)
     confusion_matrix = tune_models.run_testing(model, test_dset)
