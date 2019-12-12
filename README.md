@@ -49,15 +49,8 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   1) Added extra models for comparison. Their statistics can be found below
   and the models are in comparison_models.py
 
-## Todo
-1) Image transformations, shouldn't be too difficult with tensorflow datasets?
-Want image flips, maybe some zooms and brightness changes too?
-2) Model quantization
-3) Save model
-4) KNN as baseline
-5) Analyze confusion matrices
-6) Generate learning curves for presentation
-7) Generate graphs of model parameters/size vs accuracy
+12/11/2019: Gareth (1 Hour)
+  1) Added code to plot confusion matrix as a heatmap
 
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote without

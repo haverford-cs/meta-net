@@ -1,11 +1,15 @@
 """
-Driver code for running the convolutional neural network.
+Driver code for running the convolutional neural network, also generates
+a confusion matrix of the results.
 Authors: Gareth Nicholas + Emile Givental
 Date: December 8th, 2019
 """
 # Python imports
 import matplotlib.pyplot as plt
 import tensorflow as tf
+from tensorflow.keras.utils import plot_model
+import seaborn as sn
+import pandas as pd
 
 # Our imports
 import preprocess
@@ -64,8 +68,11 @@ def main(verbose = False, validating = False):
     if validating:
         val_dset = val_dset.batch(64)
 
-    model = miniscule_conv().model 
+    model = miniscule_conv().model
+    # Save an image of the architecture of the current model
+    plot_model(model, to_file='model.png')
     model.summary()
+
     tune_models.run_training(model, train_dset, validating, val_dset)
     confusion_matrix = tune_models.run_testing(model, test_dset)
 
@@ -81,5 +88,14 @@ def main(verbose = False, validating = False):
     for label in range(num_labels):
         print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
 
+    # Also display it in a heatmap!
+    df_cm = pd.DataFrame(confusion_matrix, index = [i for i in range(43)],
+                      columns = [i for i in range(43)])
+    plt.figure(figsize = (10,7))
+    # Normalize across rows
+    df_cm = df_cm.div(df_cm.sum(axis=1), axis=0)
+    sn.heatmap(df_cm, annot=False)
+    plt.show()
+
 if __name__ == "__main__":
-    main(True, validating = False)
+    main(verbose = False, validating = False)
