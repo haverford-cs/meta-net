@@ -150,3 +150,9 @@ Non-trainable params: 6
 Test Loss: 1.25192391872406, Test Accuracy: 69.57244873046875
 
 Wow conv nets are incredible.
+
+## References
+
+Generating confusion matrix heatmap: https://stackoverflow.com/questions/35572000/how-can-i-plot-a-confusion-matrix
+Normalizing confusion matrix: https://stackoverflow.com/questions/35678874/normalize-rows-of-pandas-data-frame-by-their-sums/35679163
+Data preprocessing on this dataset: https://github.com/mbeyeler/opencv-python-blueprints/blob/master/chapter6/datasets/gtsrb.py
