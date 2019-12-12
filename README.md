@@ -160,3 +160,5 @@ Normalizing confusion matrix: https://stackoverflow.com/questions/35678874/norma
 Data preprocessing on this dataset: https://github.com/mbeyeler/opencv-python-blueprints/blob/master/chapter6/datasets/gtsrb.py
 
 Inspiration for multi-scale convolutional network: http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
+
+Visualizing model architecture: https://machinelearningmastery.com/visualize-deep-learning-neural-network-model-keras/
