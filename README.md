@@ -162,3 +162,7 @@ Data preprocessing on this dataset: https://github.com/mbeyeler/opencv-python-bl
 Inspiration for multi-scale convolutional network: http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
 
 Visualizing model architecture: https://machinelearningmastery.com/visualize-deep-learning-neural-network-model-keras/
+
+Batch normalization intuition: https://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/
+
+Another batch normalization resource: https://towardsdatascience.com/batch-normalization-theory-and-how-to-use-it-with-tensorflow-1892ca0173ad
