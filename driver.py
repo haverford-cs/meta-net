@@ -20,7 +20,7 @@ from comparison_models import *
 import tune_models
 
 def main(verbose = False, validating = False):
-    """Main driver code.
+    """Main driver code for the project.
 
     Parameters
     ----------
@@ -58,7 +58,7 @@ def main(verbose = False, validating = False):
     test_dset = tf.data.Dataset.from_tensor_slices((test_data, test_labels))
     val_dset = None
 
-    # Validation dataset of size 2000
+    # Validation dataset of size 2000, make validation optional
     if validating:
         val_dset = train_dset.take(2000)
         train_dset = train_dset.skip(2000)
@@ -69,7 +69,8 @@ def main(verbose = False, validating = False):
         val_dset = val_dset.batch(64)
 
     model = miniscule_conv().model
-    # Save an image of the architecture of the current model
+    # Save an image of the architecture of the current model and
+    # print a summary of it
     plot_model(model, to_file='model.png')
     model.summary()
 
@@ -79,7 +80,6 @@ def main(verbose = False, validating = False):
     # Printing the confusion matrix
     num_labels = 43
     row_string = "{:4d}" * num_labels
-    # Use some Python unpacking magic to format into the row_string
     labels = row_string.format(*range(num_labels))
 
     print("\n" + "  " * num_labels + "prediction")
@@ -88,11 +88,11 @@ def main(verbose = False, validating = False):
     for label in range(num_labels):
         print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
 
-    # Also display it in a heatmap!
+    # Also display the matrix in a heatmap!
     df_cm = pd.DataFrame(confusion_matrix, index = [i for i in range(43)],
                       columns = [i for i in range(43)])
     plt.figure(figsize = (10,7))
-    # Normalize across rows
+    # Normalize across rows, sum then divide
     df_cm = df_cm.div(df_cm.sum(axis=1), axis=0)
     sn.heatmap(df_cm, annot=False)
     plt.show()

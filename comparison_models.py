@@ -1,5 +1,6 @@
 """
-Several small networks used for plotting size of network vs. accuracy.
+Several small networks used for plotting size of network vs. accuracy. Model
+statistics can be found in the readme. 
 Authors: Gareth Nicholas
 Date: December 9th, 2019
 """
@@ -14,7 +15,8 @@ from tensorflow.keras import Model, regularizers
 from tensorflow.keras.models import Sequential
 
 class reduced_dense_256(Model):
-    """Reduce the number of nodes in the dense layers to 256.
+    """Reduce the number of nodes in the dense layers of reduced_convnet()
+    to 256.
 
     Attributes
     ----------
@@ -73,7 +75,8 @@ class reduced_dense_256(Model):
 
 class reduced_dense_256_pool(Model):
     """Reduce the number of nodes in the dense layers to 256. Increase in
-    ratio of pooling operations to convolutional layers.
+    ratio of pooling operations to convolutional layers (basically the
+    architecture above but with a higher ratio of pool to conv).
 
     Attributes
     ----------

@@ -15,7 +15,8 @@ from tensorflow.keras import Model, regularizers, Input
 class multi_scale_conv(Model):
 
     def __init__(self):
-        # Functional API because sequential design is lame
+        # Functional API because sequential design is not possible for
+        # non-sequential model.
         super(multi_scale_conv, self).__init__()
         img_shape = (32, 32, 3)
 
@@ -36,6 +37,7 @@ class multi_scale_conv(Model):
         batch3 = BatchNormalization()(act3)
         pool3 = MaxPooling2D((2,2))(batch3)
 
+        # Scale down features from earlier layers
         scale_pool1 = MaxPooling2D((4,4))(pool1)
         scale_pool2 = MaxPooling2D((2,2))(pool2)
 
@@ -52,7 +54,4 @@ class multi_scale_conv(Model):
 
 
     def call(self, x):
-        # Apply convolutional layers
-        # Then flatten
-        # Then output probabilities
         return self.model(x)

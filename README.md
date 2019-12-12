@@ -52,6 +52,9 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 12/11/2019: Gareth (1 Hour)
   1) Added code to plot confusion matrix as a heatmap
 
+12/12/2019 Gareth (1 Hour)
+  1) Code clean up and commenting
+
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote without
 generating a new SSH key (if you have TFA enabled). Thus I would suggest

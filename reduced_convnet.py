@@ -21,7 +21,7 @@ class reduced_convnet(Model):
         shape = (32, 32, 3)
         model = Sequential()
 
-        # Some convolutional block stuff
+        # Similar to the original convnet
         model.add(Conv2D(32, (3, 3), kernel_regularizer=regularizers.l2(0.0001),
             input_shape = shape, padding = "same"))
         model.add(Activation("relu"))
@@ -44,6 +44,8 @@ class reduced_convnet(Model):
         model.add(MaxPooling2D((2,2)))
         model.add(Dropout(0.3))
 
+        # End with this convolutional block, in convnet() there is
+        # one extra block
         model.add(Conv2D(128, (3, 3), kernel_regularizer=regularizers.l2(0.01),
             padding = "same"))
         model.add(Activation("relu"))
@@ -57,6 +59,7 @@ class reduced_convnet(Model):
 
         # And the classification...
         model.add(Flatten())
+        # Drop dense layers from 4000 nodes to 512. Saves a lot of parameters.
         model.add(Dense(512, activation = tf.nn.relu))
         model.add(Dense(512, activation = tf.nn.relu))
         model.add(Dense(43, activation = tf.nn.softmax))
@@ -64,7 +67,4 @@ class reduced_convnet(Model):
         self.model = model
 
     def call(self, x):
-        # Apply convolutional layers
-        # Then flatten
-        # Then output probabilities
         return self.model(x)
