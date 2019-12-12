@@ -2,6 +2,8 @@
 Formerly meta-net, now classifying German street signs using convolutional
 neural networks!
 
+Run with python3 driver.py
+
 ## Data source
 The data used can be found at
 https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/published-archive.html.
