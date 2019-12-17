@@ -1,7 +1,8 @@
 """
 Utilities for preprocessing the German Traffic Sign Dataset. The data we are
 working with contains images of various sizes and can be found at
-http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset
+http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset. Preprocessing
+methods adapted from https://github.com/mbeyeler/opencv-python-blueprints/blob/master/chapter6/datasets/gtsrb.py.
 Authors: Gareth Nicholas + Emile Givental
 Date: December 8th, 2019
 """

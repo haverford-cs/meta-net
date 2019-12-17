@@ -17,7 +17,7 @@ from tensorflow.keras import Model, regularizers
 from tensorflow.keras.models import Sequential
 
 # This model is massive and probably terrible if we want to reduce the overall
-# size, leaving it here as a placeholder.
+# size, but it gets a great accuracy!
 class convnet(Model):
 
     def __init__(self):
@@ -26,16 +26,19 @@ class convnet(Model):
         shape = (32, 32, 3)
         model = Sequential()
 
-        # Some convolutional block stuff
+        # Use L2 regularization to make sure filter weights are not massive
         model.add(Conv2D(32, (3, 3), kernel_regularizer=regularizers.l2(0.0001),
             input_shape = shape, padding = "same"))
         model.add(Activation("relu"))
+        # Batch normalization to help training speed and add more
+        # regularization
         model.add(BatchNormalization())
         model.add(Conv2D(32, (3, 3), kernel_regularizer=regularizers.l2(0.0001)
             , padding = "same"))
         model.add(Activation("relu"))
         model.add(BatchNormalization())
         model.add(MaxPooling2D((2,2)))
+        # Dropout for regularization
         model.add(Dropout(0.3))
 
         model.add(Conv2D(64, (3, 3), kernel_regularizer=regularizers.l2(0.001),
@@ -73,6 +76,7 @@ class convnet(Model):
         model.add(Dropout(0.3))
 
         # And the classification...
+        # Use two dense layers
         model.add(Flatten())
         model.add(Dense(4000, activation = tf.nn.relu))
         model.add(Dense(4000, activation = tf.nn.relu))
@@ -81,7 +85,4 @@ class convnet(Model):
         self.model = model
 
     def call(self, x):
-        # Apply convolutional layers
-        # Then flatten
-        # Then output probabilities
         return self.model(x)

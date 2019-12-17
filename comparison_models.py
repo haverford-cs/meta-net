@@ -1,6 +1,7 @@
 """
-Several small networks used for plotting size of network vs. accuracy.
-Authors: Gareth Nicholas
+Several small networks used for plotting size of network vs. accuracy. Model
+statistics can be found in the readme. 
+Authors: Gareth Nicholas, Emile Givental
 Date: December 9th, 2019
 """
 
@@ -14,7 +15,9 @@ from tensorflow.keras import Model, regularizers
 from tensorflow.keras.models import Sequential
 
 class reduced_dense_256(Model):
-    """Reduce the number of nodes in the dense layers to 256.
+
+    """Reduce the number of nodes in the dense layers of reduced_convnet()
+    to 256.
 
     Attributes
     ----------
@@ -25,6 +28,7 @@ class reduced_dense_256(Model):
 
     def __init__(self):
         super(reduced_dense_256, self).__init__()
+
         self.model_name = "reduced_dense_256"
         shape = (32, 32, 3)
         model = Sequential()
@@ -74,8 +78,10 @@ class reduced_dense_256(Model):
 
 class reduced_dense_256_pool(Model):
     """Reduce the number of nodes in the dense layers to 256. Increase in
-    ratio of pooling operations to convolutional layers.
 
+    ratio of pooling operations to convolutional layers.
+    ratio of pooling operations to convolutional layers (basically the
+    architecture above but with a higher ratio of pool to conv).
     Attributes
     ----------
     model : tf model
@@ -268,6 +274,7 @@ class reduced_dense_and_conv3(Model):
 class tiny_conv(Model):
     """Very small convolutional network to start getting points in the corner
     of our # of parameters vs accuracy graph. 
+    of our # of parameters vs accuracy graph.
 
     Attributes
     ----------
@@ -305,6 +312,45 @@ class tiny_conv(Model):
         model.add(Flatten())
         model.add(Dense(128, activation = tf.nn.relu))
         model.add(Dense(128, activation = tf.nn.relu))
+        model.add(Dense(43, activation = tf.nn.softmax))
+
+        self.model = model
+
+    def call(self, x):
+        return self.model(x)
+
+class miniscule_conv(Model):
+    """Exceptionally small convolutional network to start getting points in the
+    corner of our # of parameters vs accuracy graph.
+
+    Attributes
+    ----------
+    model : tf model
+        The underlying model.
+
+    """
+
+    def __init__(self):
+        super(miniscule_conv, self).__init__()
+        shape = (32, 32, 3)
+        model = Sequential()
+
+        model.add(Conv2D(1, (8, 8), kernel_regularizer=regularizers.l2(0.0001),
+            input_shape = shape, padding = "same"))
+        model.add(Activation("relu"))
+        model.add(BatchNormalization())
+        model.add(MaxPooling2D((5, 5)))
+        model.add(Dropout(0.2))
+
+        model.add(Conv2D(2, (5, 5), kernel_regularizer=regularizers.l2(0.001),
+            padding = "same"))
+        model.add(Activation("relu"))
+        model.add(BatchNormalization())
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.3))
+
+        model.add(Flatten())
+        model.add(Dense(32, activation = tf.nn.relu))
         model.add(Dense(43, activation = tf.nn.softmax))
 
         self.model = model

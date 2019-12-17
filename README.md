@@ -2,6 +2,8 @@
 Formerly meta-net, now classifying German street signs using convolutional
 neural networks!
 
+Run with python3 driver.py
+
 ## Data source
 The data used can be found at
 https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/published-archive.html.
@@ -43,6 +45,7 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 
 12/9/2019: Gareth (4 Hours)
   1) Added reduced convnet model wh   ich gets us down to 1.6 million parameters
+
   and almost 97% accuracy!!!
   2) Recalculated some of the model benchmarks with different amounts of
   regularization, added batch normalization to multi-scale.
@@ -56,18 +59,21 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 12/11/2019: Emile (3 hours)
   1) Confusion Matrices + images
   2) KNN running baseline
-  3) 
-  
+
+
 12/12/2019: Emile (3 hours)
   1) model saves
 
-## Todo
-1) Flips
-2) Save model
-5) Generate learning curves for presentation
-6) Generate graphs of model parameters/size vs accuracy
-7) Generate misclassified
-8) Models to Images
+
+12/10/2019: Gareth (1 Hour)
+  1) Added extra models for comparison. Their statistics can be found below
+  and the models are in comparison_models.py
+
+12/11/2019: Gareth (1 Hour)
+  1) Added code to plot confusion matrix as a heatmap
+
+12/12/2019 Gareth (1 Hour)
+  1) Code clean up and commenting
 
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote without
@@ -79,12 +85,17 @@ Also if you need to get around the lab computers not having opencv, I used
 pip install --user opencv-python.
 ## Current Model Statistics (12/9/2019)
 Models were trained for 20 epochs each.
+
+
 ### Class competition model: convnet()
+
 Total params: 20,960,619
 Trainable params: 20,958,699
 Non-trainable params: 1,920
 Test Loss: 0.2239145189523697, Test Accuracy: 97.22090148925781
+
 ### Multi-scale cnn: multi_scale_conv()
+
 Total params: 3,882,475
 Trainable params: 3,882,027
 Non-trainable params: 448
@@ -142,3 +153,31 @@ Test Loss: 0.6464730501174927, Test Accuracy: 88.0680923461914
 Total params: 25,227
 Trainable params: 25,211
 Non-trainable params: 16
+
+Test Loss: 0.8594541549682617, Test Accuracy: 80.68091583251953
+
+### Going even smaller than the last model: miniscule_conv()
+
+Total params: 2,284
+Trainable params: 2,278
+Non-trainable params: 6
+
+Test Loss: 1.25192391872406, Test Accuracy: 69.57244873046875
+
+Wow conv nets are incredible.
+
+## References
+
+Generating confusion matrix heatmap: https://stackoverflow.com/questions/35572000/how-can-i-plot-a-confusion-matrix
+
+Normalizing confusion matrix: https://stackoverflow.com/questions/35678874/normalize-rows-of-pandas-data-frame-by-their-sums/35679163
+
+Data preprocessing on this dataset: https://github.com/mbeyeler/opencv-python-blueprints/blob/master/chapter6/datasets/gtsrb.py
+
+Inspiration for multi-scale convolutional network: http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
+
+Visualizing model architecture: https://machinelearningmastery.com/visualize-deep-learning-neural-network-model-keras/
+
+Batch normalization intuition: https://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/
+
+Another batch normalization resource: https://towardsdatascience.com/batch-normalization-theory-and-how-to-use-it-with-tensorflow-1892ca0173ad

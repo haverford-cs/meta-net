@@ -10,6 +10,9 @@ import numpy as np
 
 @tf.function
 def train_step(model, images, labels, loss_object, optimizer):
+    """
+    Run one training step using a batch of images.
+    """
     with tf.GradientTape() as tape:
         predictions = model(images)
         loss = loss_object(labels, predictions)
@@ -20,6 +23,9 @@ def train_step(model, images, labels, loss_object, optimizer):
 
 @tf.function
 def val_step(model, images, labels, loss_object):
+    """
+    Check the model performance on a batch of validation images. 
+    """
     predictions = model(images)
     loss = loss_object(labels, predictions)
 
