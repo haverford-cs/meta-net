@@ -10,11 +10,14 @@ import cv2
 import csv
 import os
 import numpy as np
+from scipy.ndimage import rotate
+from scipy.ndimage.interpolation import shift
+import matplotlib.pyplot as plt
 
 training_path = "Training/Final_Training/Images/"
 testing_path = "Testing/Final_Test/Images"
 
-def load_training_data():
+def load_training_data(shifting = False, rotating = False, flip = False, shift_amount = 5, rotate_amount = 12):
     """Read in the training data.
 
     Returns
@@ -48,8 +51,27 @@ def load_training_data():
                 data.append(image)
                 labels.append(label)
             csv_file.close()
-    data = normalize(data)
+            
+    data = np.array(data)
+    #data = normalize(data)
     labels = np.array(labels)
+    ## if we are rotating or shifting appropriately grow the labels out
+    if rotating:
+        labels = np.concatenate((np.concatenate((labels, labels)), labels))
+        if rotating and shifting:
+            labels = np.concatenate((labels, labels))
+    elif shifting:
+      labels = np.concatenate((labels, labels))
+    if rotating:
+        rotated_pos = np.array([rotate(image, rotate_amount, reshape = False) for image in data])
+        rotated_neg = np.array([rotate(image, -rotate_amount, reshape = False) for image in data])
+        
+        data = np.concatenate((np.concatenate((rotated_pos, data)), rotated_neg))
+    if shifting:
+        shifted = [shift(image, (shift_amount, shift_amount, 0), mode = 'constant') for image in data]
+        data = np.concatenate((np.array(shifted), data))
+    plt.imshow(rotated_neg[20])
+    plt.show()
     return data, labels
 
 def load_testing_data():
@@ -82,6 +104,7 @@ def load_testing_data():
     csv_file.close()
     data = normalize(data)
     labels = np.array(labels)
+    print("Done Preprocessing")
     return data, labels
 
 

@@ -28,6 +28,9 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   it. The current model has a testing accuracy of 96%, not bad at all! However,
   the model is huge.
 
+12/9/2019: Emile (2 hours)
+  1) began writing code to itroduce rotations, shifts, flips, and brightness updates to the data to generate more data from the same set
+
 12/9/2019: Gareth (2 Hours)
   1) Added multi-scale model with regularization, might want batch norm
   2) Bumped up number of epochs, might want to adjust stopping criteria
@@ -38,21 +41,33 @@ test data can be found in GTSRB_Final_Test_GT.zip.
   model had poor accuracy on it (much lower than the test acc). It might be
   more useful to use cross-validation instead.
 
-12/9/2019: Gareth (2 Hours)
-  1) Added reduced convnet model which gets us down to 1.6 million parameters
+12/9/2019: Gareth (4 Hours)
+  1) Added reduced convnet model wh   ich gets us down to 1.6 million parameters
   and almost 97% accuracy!!!
   2) Recalculated some of the model benchmarks with different amounts of
   regularization, added batch normalization to multi-scale.
+  3) Added additional models for graph of params vs accuracy
+
+12/10/2019: Emile (3 hours)
+  1) Completed rotations and shifts, and will continue with flips
+  2) made command line arguments easy to parse
+  3) Ran models with rotations and shifts
+  
+12/11/2019: Emile (3 hours)
+  1) Confusion Matrices + images
+  2) KNN running baseline
+  3) 
+  
+12/12/2019: Emile (3 hours)
+  1) model saves
 
 ## Todo
-1) Image transformations, shouldn't be too difficult with tensorflow datasets?
-Want image flips, maybe some zooms and brightness changes too?
-2) Model quantization
-3) Save model
-4) KNN as baseline
-5) Analyze confusion matrices
-6) Generate learning curves for presentation
-7) Generate graphs of model parameters/size vs accuracy
+1) Flips
+2) Save model
+5) Generate learning curves for presentation
+6) Generate graphs of model parameters/size vs accuracy
+7) Generate misclassified
+8) Models to Images
 
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote without
@@ -62,30 +77,68 @@ once, so scp -r ~/path_to_files/*.py will move just the code files.
 
 Also if you need to get around the lab computers not having opencv, I used
 pip install --user opencv-python.
-
 ## Current Model Statistics (12/9/2019)
 Models were trained for 20 epochs each.
-
-### Class competition model
-
+### Class competition model: convnet()
 Total params: 20,960,619
 Trainable params: 20,958,699
 Non-trainable params: 1,920
-
 Test Loss: 0.2239145189523697, Test Accuracy: 97.22090148925781
-
-### Multi-scale cnn
-
+### Multi-scale cnn: multi_scale_conv()
 Total params: 3,882,475
 Trainable params: 3,882,027
 Non-trainable params: 448
-
 Test Loss: 0.7362900376319885, Test Accuracy: 96.46080780029297
 
-### Smaller version of class competition model
-
+### Smaller version of class competition model (SCCM): reduced_convnet()
 Total params: 1,622,603
 Trainable params: 1,621,707
 Non-trainable params: 896
 
-Test Loss: 0.35589390993118286, Test Accuracy: 96.34204864501953
+Test Loss: 0.23565997183322906, Test Accuracy: 96.95170593261719
+
+### SCCM but with less nodes in the dense layers (256 vs 512): reduced_dense_256()
+
+Total params: 890,187
+Trainable params: 889,291
+Non-trainable params: 896
+
+Test Loss: 0.27640843391418457, Test Accuracy: 96.76959228515625
+
+### Model above with larger filter sizes, reduced the number of convolutional layers: reduced_dense_256_pool()
+
+Total params: 368,875
+Trainable params: 368,683
+Non-trainable params: 192
+
+Test Loss: 0.40244945883750916, Test Accuracy: 93.11164093017578
+
+### Model above with half the number of filters: reduced_dense_and_conv()
+
+Total params: 158,987
+Trainable params: 158,891
+Non-trainable params: 96
+
+Test Loss: 0.41992634534835815, Test Accuracy: 92.57323455810547
+
+### Model above with half the number of filters again: reduced_dense_and_conv2()
+
+Total params: 102,043
+Trainable params: 101,995
+Non-trainable params: 48
+
+Test Loss: 0.6126990914344788, Test Accuracy: 90.41963958740234
+
+### Halve the filters once again (down to 1/8 of original): reduced_dense_and_conv3()
+
+Total params: 85,571
+Trainable params: 85,547
+Non-trainable params: 24
+
+Test Loss: 0.6464730501174927, Test Accuracy: 88.0680923461914
+
+### Tiny model to get corner of our graph: tiny_conv()
+
+Total params: 25,227
+Trainable params: 25,211
+Non-trainable params: 16

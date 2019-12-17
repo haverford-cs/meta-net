@@ -17,6 +17,7 @@ class multi_scale_conv(Model):
     def __init__(self):
         # Functional API because sequential design is lame
         super(multi_scale_conv, self).__init__()
+        self.model_name = "multi_scale_conv"
         img_shape = (32, 32, 3)
 
         in_layer = Input(shape = img_shape)

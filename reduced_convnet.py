@@ -17,7 +17,9 @@ from tensorflow.keras.models import Sequential
 class reduced_convnet(Model):
 
     def __init__(self):
+        self.custom_model_name = "reduced convnet"
         super(reduced_convnet, self).__init__()
+        self.model_name = "reduced_convnet"
         shape = (32, 32, 3)
         model = Sequential()
 

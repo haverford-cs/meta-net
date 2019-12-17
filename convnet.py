@@ -22,6 +22,7 @@ class convnet(Model):
 
     def __init__(self):
         super(convnet, self).__init__()
+        self.model_name = "convnet"
         shape = (32, 32, 3)
         model = Sequential()
 
