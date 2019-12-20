@@ -1,7 +1,7 @@
 """
 Several small networks used for plotting size of network vs. accuracy. Model
 statistics can be found in the readme. 
-Authors: Gareth Nicholas, Emile Givental
+Authors: Gareth Nicholas + Emile Givental
 Date: December 9th, 2019
 """
 

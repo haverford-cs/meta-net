@@ -1,3 +1,9 @@
+""" The KNN baseline for the project. It takes forever to run (2 hours?),
+so we cut out a large chunk of the data set to run it faster 
+Authors: Gareth Nicholas + Emile Givental
+Date: December 11th, 2019
+"""
+
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 from sklearn.metrics import confusion_matrix

@@ -66,7 +66,6 @@ def load_training_data(shifting = False, rotating = False, flip = False, shift_a
     if rotating:
         rotated_pos = np.array([rotate(image, rotate_amount, reshape = False) for image in data])
         rotated_neg = np.array([rotate(image, -rotate_amount, reshape = False) for image in data])
-        
         data = np.concatenate((np.concatenate((rotated_pos, data)), rotated_neg))
     if shifting:
         shifted = [shift(image, (shift_amount, shift_amount, 0), mode = 'constant') for image in data]

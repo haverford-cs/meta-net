@@ -2,7 +2,27 @@
 Formerly meta-net, now classifying German street signs using convolutional
 neural networks!
 
-Run with python3 driver.py
+Run with python3 driver.py -m required
+
+Options:
+  -h, --help            show this help message and exit
+  -m MODEL, --model=MODEL
+                        the options for model are['convnet',
+                        'reduced_convnet', 'multi_scale_conv', 'KNN',
+                        'reduced_dense_256', 'reduced_dense_256_pool',
+                        'reduced_dense_and_conv', 'reduced_dense_and_conv2',
+                        'reduced_dense_and_conv3', 'tiny_conv']
+  -r                    whether to rotate the data set in one direction,
+                        default is [default]
+  -R                    whether to rotate the images in both directions
+  -s                    whether or not to shift the data, default is [default]
+  -v                    whether or not to print results to cmdline, default =
+                        [default]
+  -l                    whether or not to use a validation dataset for
+                        hyperparameter (NOT YET INSTALLED), default =
+                        [default]
+  -a                    whether or not to save the model, default = [default]
+
 
 ## Data source
 The data used can be found at
@@ -45,7 +65,6 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 
 12/9/2019: Gareth (4 Hours)
   1) Added reduced convnet model wh   ich gets us down to 1.6 million parameters
-
   and almost 97% accuracy!!!
   2) Recalculated some of the model benchmarks with different amounts of
   regularization, added batch normalization to multi-scale.
@@ -63,7 +82,8 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 
 12/12/2019: Emile (3 hours)
   1) model saves
-
+  2) commenting and cleaning code
+  3) using opts to parse everything
 
 12/10/2019: Gareth (1 Hour)
   1) Added extra models for comparison. Their statistics can be found below
@@ -74,6 +94,12 @@ test data can be found in GTSRB_Final_Test_GT.zip.
 
 12/12/2019 Gareth (1 Hour)
   1) Code clean up and commenting
+
+12/12/2019 Emile (2 Hours)
+  1) presentation and data graphs
+
+12/20/19 Emile (2 hours)
+  1) commenting and cleaning code
 
 ## Working with GPUs and lab computers
 It is currently impossible to commit from the lab computers to remote without

@@ -1,6 +1,6 @@
 """
 Convolutional neural network architecture which uses multi-scale features.
-Authors: Gareth Nicholas
+Authors: Gareth Nicholas + Emile Givental
 Date: December 9th, 2019
 """
 

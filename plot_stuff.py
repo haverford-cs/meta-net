@@ -1,3 +1,10 @@
+""" A file to plot the data that we used for the presentation
+Authors: Gareth Nicholas + Emile Givental
+Date: December 11th, 2019
+"""
+
+
+
 import matplotlib.pyplot as plt
 import math
 if __name__ == "__main__":
@@ -6,8 +13,6 @@ if __name__ == "__main__":
   results = [54, 79.75455474853516, 81.77355194091797, 90.36421203613281, 91.58353424072266, 88.33728790283203, 95.45526123046875, 96.83293914794922 , 97.23674011230469, 97.600952148437] 
   
   rotating_results = [54, 83.49169158935547, 84, 91, 91.2, 92, 95, 96.9, 97.3, 97.8]
-  
-
   
   plt.plot(log_params, results, 'r*-', label = "normal")
   plt.plot(log_params, rotating_results, 'g*-', label = "rotated")

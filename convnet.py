@@ -1,7 +1,7 @@
 """
 Convolutional neural network architecture that I used in the class competition.
 The starting benchmark.
-Authors: Gareth Nicholas
+Authors: Gareth Nicholas + Emile Givental
 Date: December 8th, 2019
 """
 

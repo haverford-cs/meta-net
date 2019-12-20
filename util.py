@@ -1,3 +1,11 @@
+""" A argument parsing file + confusion matrix creation 
+Authors: Gareth Nicholas + Emile Givental
+Date: December 11th, 2019
+"""
+
+
+
+
 import optparse
 import numpy as np
 import pandas as pd
@@ -8,12 +16,11 @@ def parse_args():
   parser = optparse.OptionParser(description='run final project')
   model_list = ["convnet", "reduced_convnet", "multi_scale_conv", "KNN",\
    "reduced_dense_256", "reduced_dense_256_pool", "reduced_dense_and_conv", \
-   "reduced_dense_and_conv2", "reduced_dense_and_conv3", "tiny_conv"]
+   "reduced_dense_and_conv2", "reduced_dense_and_conv3", "tiny_conv", "miniscule_conv"]
   parser.add_option('-m',
   '--model', type='string', default = "tiny_convnet", help = "the options for model are" + str(model_list))
      
-  parser.add_option('-r', action="store_true", dest="rotating", default = False, help= "whether to rotate the data set in one direction, default is [default]")
-  parser.add_option('-R', action="store_true", dest="double_rot", default = False, help= "whether to rotate the images in both directions")
+  parser.add_option('-r', action="store_true", dest="rotating", default = False, help= "whether to rotate the data set (always both directions 12 degrees), default is [default]")
   parser.add_option('-s', action="store_true", dest="shifting", default = False, help = "whether or not to shift the data, default is [default]")
   parser.add_option('-v', action="store_true", dest="verbose", default = False, help = "whether or not to print results to cmdline, default = [default]")
   parser.add_option('-l', action="store_true", dest="validation", default = False, help = "whether or not to use a validation dataset for hyperparameter (NOT YET INSTALLED), default = [default]")
