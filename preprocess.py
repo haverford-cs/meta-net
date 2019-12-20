@@ -62,7 +62,7 @@ def load_training_data(shifting = False, rotating = False, flip = False, shift_a
         if rotating and shifting:
             labels = np.concatenate((labels, labels))
     elif shifting:
-      labels = np.concatenate((labels, labels))
+        labels = np.concatenate((labels, labels))
     if rotating:
         rotated_pos = np.array([rotate(image, rotate_amount, reshape = False) for image in data])
         rotated_neg = np.array([rotate(image, -rotate_amount, reshape = False) for image in data])
@@ -70,8 +70,6 @@ def load_training_data(shifting = False, rotating = False, flip = False, shift_a
     if shifting:
         shifted = [shift(image, (shift_amount, shift_amount, 0), mode = 'constant') for image in data]
         data = np.concatenate((np.array(shifted), data))
-    plt.imshow(rotated_neg[20])
-    plt.show()
     return data, labels
 
 def load_testing_data():

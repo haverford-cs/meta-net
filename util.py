@@ -3,9 +3,6 @@ Authors: Gareth Nicholas + Emile Givental
 Date: December 11th, 2019
 """
 
-
-
-
 import optparse
 import numpy as np
 import pandas as pd

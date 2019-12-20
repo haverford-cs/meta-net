@@ -3,8 +3,6 @@ Authors: Gareth Nicholas + Emile Givental
 Date: December 11th, 2019
 """
 
-
-
 import matplotlib.pyplot as plt
 import math
 if __name__ == "__main__":

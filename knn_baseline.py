@@ -16,7 +16,6 @@ class KNN:
   def __init__(self, X, y, n=4, max_data = 10000):
     self.model = KNeighborsClassifier(n_neighbors = n)
     self.model.fit(X[0:100000],y[0:100000])
-    
   def predict(self, X, y):
     predictions = self.model.predict(X)
     acc = sum([1 if predictions[i] == y[i] else 0 for i in range(len(predictions))])/len(predictions)

@@ -25,16 +25,6 @@ from knn_baseline import KNN
 import tune_models
 import os
 
-def plot_confusion_matrix(df_confusion, title='Confusion matrix', cmap=plt.cm.gray_r):
-    plt.matshow(df_confusion, cmap=cmap) # imshow
-    #plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(len(df_confusion.columns))
-    plt.xticks(tick_marks, df_confusion.columns, rotation=45)
-    plt.yticks(tick_marks, df_confusion.index)
-    #plt.tight_layout()
-    plt.ylabel(df_confusion.index.name)
-    plt.xlabel(df_confusion.columns.name)
 
 def main(verbose = False, validating = False):
     """Main driver code for the project.
@@ -56,7 +46,6 @@ def main(verbose = False, validating = False):
     
     train_data, train_labels = preprocess.load_training_data(rotating = \
     opts.rotating, shifting = opts.shifting)
-    print(opts.rotating)
     test_data, test_labels = preprocess.load_testing_data()
 
     if opts.verbose:
