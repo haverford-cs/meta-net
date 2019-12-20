@@ -8,14 +8,10 @@ Date: December 8th, 2019
 from __future__ import absolute_import, division, print_function, unicode_literals
 import matplotlib.pyplot as plt
 import tensorflow as tf
-<<<<<<< HEAD
-from keras.utils import plot_model, model_to_dot
-from IPython.display import SVG
-=======
+
 from tensorflow.keras.utils import plot_model
 import seaborn as sn
 import pandas as pd
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
 
 # Our imports
 import preprocess
@@ -24,15 +20,10 @@ from convnet import *
 from multi_scale_conv import *
 from reduced_convnet import *
 from comparison_models import *
-<<<<<<< HEAD
+
 from knn_baseline import KNN
-=======
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
 import tune_models
 import os
-
-<<<<<<< HEAD
-
 
 def plot_confusion_matrix(df_confusion, title='Confusion matrix', cmap=plt.cm.gray_r):
     plt.matshow(df_confusion, cmap=cmap) # imshow
@@ -45,12 +36,9 @@ def plot_confusion_matrix(df_confusion, title='Confusion matrix', cmap=plt.cm.gr
     plt.ylabel(df_confusion.index.name)
     plt.xlabel(df_confusion.columns.name)
 
-def main(opts):
-    """Main driver code.
-=======
 def main(verbose = False, validating = False):
     """Main driver code for the project.
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
+
 
     Parameters
     ----------
@@ -91,13 +79,9 @@ def main(verbose = False, validating = False):
     test_dset = tf.data.Dataset.from_tensor_slices((test_data, test_labels))
     val_dset = None
 
-<<<<<<< HEAD
     # Validation dataset of size 2000
     if opts.validation:
-=======
-    # Validation dataset of size 2000, make validation optional
-    if validating:
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
+
         val_dset = train_dset.take(2000)
         train_dset = train_dset.skip(2000)
 
@@ -115,7 +99,6 @@ def main(verbose = False, validating = False):
       tune_models.run_training(model, train_dset, opts.validation, val_dset)
       confusion_matrix, acc = tune_models.run_testing(model, test_dset, test_labels)
 
-<<<<<<< HEAD
       # Printing the confusion matrix
       num_labels = 43
       row_string = "{:4d}" * num_labels
@@ -133,27 +116,6 @@ def main(verbose = False, validating = False):
       f = open("results.txt", "a+")
       f.write(f"The model {opts.model} got an accuracy of {acc} with rotating set to {opts.rotating} and shifting set to {opts.shifting}")
     return acc
-=======
-    model = miniscule_conv().model
-    # Save an image of the architecture of the current model and
-    # print a summary of it
-    plot_model(model, to_file='model.png')
-    model.summary()
-
-    tune_models.run_training(model, train_dset, validating, val_dset)
-    confusion_matrix = tune_models.run_testing(model, test_dset)
-
-    # Printing the confusion matrix
-    num_labels = 43
-    row_string = "{:4d}" * num_labels
-    labels = row_string.format(*range(num_labels))
-
-    print("\n" + "  " * num_labels + "prediction")
-    print("  " + labels)
-    print("  " + "____" * num_labels)
-    for label in range(num_labels):
-        print(str(label) + "|" + row_string.format(*confusion_matrix[label]))
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
 
     # Also display the matrix in a heatmap!
     df_cm = pd.DataFrame(confusion_matrix, index = [i for i in range(43)],
@@ -165,10 +127,5 @@ def main(verbose = False, validating = False):
     plt.show()
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     opts = parse_args()
     main(opts)
-    
-=======
-    main(verbose = False, validating = False)
->>>>>>> 84f6380caec38833093a57e3d80296bab2b3f441
